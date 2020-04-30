@@ -15,4 +15,4 @@ app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
 
-//app.use(express.static("public"));
+app.use(express.static("public"));
