@@ -37,7 +37,8 @@ class Store {
         if (!title || !text) {
           throw new Error("Note 'title' and 'text' cannot be blank");
         }
-            // Add a unique id to the note using uuid package
+
+        // Add a unique id to the note using uuid package
         const newNote = { title, text, id: uuidv1() };
 
         // Get all notes, add the new note, write all the updated notes, return the newNote
@@ -46,3 +47,13 @@ class Store {
             .then(updatedNotes => this.write(updatedNotes))
             .then(() => newNote);
 }
+
+removeNote(id){
+     // Get all notes, remove the note with the given id, write the filtered notes
+     return this.getNotes()
+     .then(notes => notes.filter(note => note.id !== id))
+     .then(filteredNotes => this.write(filteredNotes));
+ }
+}
+
+module.exports = new Store();
